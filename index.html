@@ -13,21 +13,60 @@
       font-family: 'Arial', sans-serif;
       background-color: #f4f6f9;
       color: #333;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* DARK MODE */
+    body.dark {
+      background-color: #1a1a2e;
+      color: #eee;
+    }
+
+    body.dark .section {
+      background-color: #16213e;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    body.dark .section h2 {
+      color: #3498db;
+    }
+
+    body.dark .section p {
+      color: #ccc;
+    }
+
+    body.dark .skill {
+      background-color: #0f3460;
+      color: #3498db;
+    }
+
+    /* TOMBOL DARK MODE */
+    .toggle-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: white;
+      border: 2px solid #3498db;
+      color: #3498db;
+      padding: 8px 16px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.3s ease;
+      z-index: 999;
+    }
+
+    .toggle-btn:hover {
+      background: #3498db;
+      color: white;
     }
 
     /* ANIMASI MASUK */
     @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    /* HEADER */
     .header {
       background: linear-gradient(135deg, #2c3e50, #3498db);
       color: white;
@@ -36,17 +75,9 @@
       animation: fadeUp 1s ease;
     }
 
-    .header h1 {
-      font-size: 48px;
-      margin-bottom: 12px;
-    }
+    .header h1 { font-size: 48px; margin-bottom: 12px; }
+    .header p { font-size: 18px; color: #d0e8ff; }
 
-    .header p {
-      font-size: 18px;
-      color: #d0e8ff;
-    }
-
-    /* KARTU SECTION */
     .section {
       max-width: 750px;
       margin: 30px auto;
@@ -55,10 +86,9 @@
       padding: 30px;
       box-shadow: 0 4px 15px rgba(0,0,0,0.08);
       animation: fadeUp 1s ease;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
     }
 
-    /* HOVER EFEK KARTU */
     .section:hover {
       transform: translateY(-5px);
       box-shadow: 0 8px 25px rgba(0,0,0,0.15);
@@ -72,13 +102,8 @@
       padding-left: 12px;
     }
 
-    .section p {
-      color: #555;
-      line-height: 1.8;
-      margin-bottom: 8px;
-    }
+    .section p { color: #555; line-height: 1.8; margin-bottom: 8px; }
 
-    /* SKILL BADGE */
     .skill {
       display: inline-block;
       background-color: #eaf4ff;
@@ -91,35 +116,18 @@
       transition: background-color 0.3s ease, color 0.3s ease;
     }
 
-    /* HOVER EFEK BADGE */
-    .skill:hover {
-      background-color: #3498db;
-      color: white;
-      cursor: default;
-    }
+    .skill:hover { background-color: #3498db; color: white; cursor: default; }
 
-    /* KONTAK */
-    .kontak a {
-      color: #3498db;
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
+    .kontak a { color: #3498db; text-decoration: none; transition: color 0.3s ease; }
+    .kontak a:hover { color: #2c3e50; text-decoration: underline; }
 
-    .kontak a:hover {
-      color: #2c3e50;
-      text-decoration: underline;
-    }
-
-    /* FOOTER */
-    .footer {
-      text-align: center;
-      padding: 30px;
-      color: #aaa;
-      font-size: 13px;
-    }
+    .footer { text-align: center; padding: 30px; color: #aaa; font-size: 13px; }
   </style>
 </head>
 <body>
+
+  <!-- TOMBOL DARK MODE -->
+  <button class="toggle-btn" onclick="toggleDark()">🌙 Dark Mode</button>
 
   <div class="header">
     <h1>Muhamad Dikri</h1>
@@ -143,12 +151,24 @@
     <h2>Kontak</h2>
     <p>📧 Email: <a href="mailto:emailkamu@gmail.com">muhamaddikri097@gmail.com</a></p>
     <p>📱 Instagram: <a href="#">@dikri_404</a></p>
-    <p>💼 LinkedIn: <a href="#">linkedin.com/in/namakamu</a></p>
+    <p>💼 LinkedIn: <a href="#">linkedin.com/in/BelumBikin</a></p>
   </div>
 
   <div class="footer">
     <p>Dibuat dengan ❤️ oleh Muhamad Dikri</p>
   </div>
+
+  <script>
+    function toggleDark() {
+      document.body.classList.toggle('dark');
+      const btn = document.querySelector('.toggle-btn');
+      if (document.body.classList.contains('dark')) {
+        btn.textContent = '☀️ Light Mode';
+      } else {
+        btn.textContent = '🌙 Dark Mode';
+      }
+    }
+  </script>
 
 </body>
 </html>
