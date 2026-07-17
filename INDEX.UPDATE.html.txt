@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Portfolio - Muhamad Dikri</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f6f9;
+      color: #333;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* DARK MODE */
+    body.dark { background-color: #1a1a2e; color: #eee; }
+    body.dark .section { background-color: #16213e; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+    body.dark .section h2 { color: #3498db; }
+    body.dark .section p, body.dark .section li { color: #ccc; }
+    body.dark .skill { background-color: #0f3460; color: #3498db; }
+    body.dark .project-card { background-color: #0f3460; }
+    body.dark .project-card h3 { color: #3498db; }
+    body.dark .project-card p { color: #ccc; }
+    body.dark nav { background-color: #16213e; }
+    body.dark nav a { color: #ccc; }
+
+    /* NAVBAR */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: white;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      padding: 15px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      z-index: 998;
+    }
+
+    nav a {
+      color: #2c3e50;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover { color: #3498db; }
+
+    /* TOMBOL DARK MODE */
+    .toggle-btn {
+      position: fixed;
+      top: 12px; right: 20px;
+      background: white;
+      border: 2px solid #3498db;
+      color: #3498db;
+      padding: 6px 14px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 13px;
+      transition: all 0.3s ease;
+      z-index: 999;
+    }
+
+    .toggle-btn:hover { background: #3498db; color: white; }
+
+    /* HEADER */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .header {
+      background: linear-gradient(135deg, #2c3e50, #3498db);
+      color: white;
+      text-align: center;
+      padding: 120px 20px 80px;
+      animation: fadeUp 1s ease;
+    }
+
+    .header h1 { font-size: 46px; margin-bottom: 10px; }
+    .header .subtitle { font-size: 18px; color: #d0e8ff; margin-bottom: 6px; }
+    .header .edu { font-size: 14px; color: #a8d4f5; }
+
+    /* SECTION */
+    .section {
+      max-width: 800px;
+      margin: 30px auto;
+      background: white;
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      animation: fadeUp 1s ease;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    }
+
+    .section:hover { transform: translateY(-4px); box-shadow: 0 8px 25px rgba(0,0,0,0.12); }
+
+    .section h2 {
+      color: #2c3e50;
+      margin-bottom: 18px;
+      font-size: 22px;
+      border-left: 4px solid #3498db;
+      padding-left: 12px;
+    }
+
+    .section p { color: #555; line-height: 1.8; margin-bottom: 8px; }
+
+    /* SKILL BADGE */
+    .skill {
+      display: inline-block;
+      background-color: #eaf4ff;
+      color: #3498db;
+      border: 1px solid #3498db;
+      border-radius: 20px;
+      padding: 6px 16px;
+      margin: 5px;
+      font-size: 14px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .skill:hover { background-color: #3498db; color: white; cursor: default; }
+
+    /* SKILL GROUP */
+    .skill-group { margin-bottom: 15px; }
+    .skill-group h3 { font-size: 14px; color: #888; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
+
+    /* PROJECT CARD */
+    .project-card {
+      background: #f0f7ff;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 15px;
+      border-left: 4px solid #3498db;
+      transition: transform 0.3s ease;
+    }
+
+    .project-card:hover { transform: translateX(5px); }
+    .project-card h3 { color: #2c3e50; margin-bottom: 8px; font-size: 17px; }
+    .project-card p { color: #555; font-size: 14px; line-height: 1.7; margin-bottom: 6px; }
+    .project-card .hasil { color: #27ae60; font-weight: bold; font-size: 13px; }
+
+    /* KONTAK */
+    .kontak a { color: #3498db; text-decoration: none; transition: color 0.3s ease; }
+    .kontak a:hover { color: #2c3e50; text-decoration: underline; }
+
+    /* FOOTER */
+    .footer { text-align: center; padding: 30px; color: #aaa; font-size: 13px; }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <a href="#tentang">Tentang</a>
+    <a href="#skills">Skills</a>
+    <a href="#proyek">Proyek</a>
+    <a href="#kontak">Kontak</a>
+  </nav>
+
+  <!-- TOMBOL DARK MODE -->
+  <button class="toggle-btn" onclick="toggleDark()">🌙 Dark Mode</button>
+
+  <!-- HEADER -->
+  <div class="header">
+    <h1>Muhamad Dikri</h1>
+    <p class="subtitle">Mahasiswa D4 Administrasi Bisnis Internasional</p>
+    <p class="edu">📚 Semester 2 · SMK Akuntansi · Antusias Belajar & Berkembang</p>
+  </div>
+
+  <!-- TENTANG -->
+  <div class="section" id="tentang">
+    <h2>Tentang Saya</h2>
+    <p>Halo! Nama saya <strong>Muhamad Dikri</strong>, biasa dipanggil <strong>Dikri</strong>. Saya lulusan SMK dengan bidang Akuntansi dan kini sedang menempuh pendidikan D4 Administrasi Bisnis Internasional.</p>
+    <p>Saya memiliki kemampuan berbahasa Indonesia yang baik dan sedang aktif meningkatkan kemampuan bahasa Inggris saya. Saya adalah pribadi yang senang belajar hal baru dan terbuka untuk bertemu teman-teman baru dari berbagai latar belakang.</p>
+  </div>
+
+  <!-- SKILLS -->
+  <div class="section" id="skills">
+    <h2>Skills</h2>
+
+    <div class="skill-group">
+      <h3>📊 Microsoft Excel</h3>
+      <span class="skill">VLOOKUP</span>
+      <span class="skill">HLOOKUP</span>
+      <span class="skill">XLOOKUP</span>
+      <span class="skill">IF</span>
+      <span class="skill">SUM</span>
+      <span class="skill">MIN & MAX</span>
+      <span class="skill">PIVOT TABLE</span>
+      <span class="skill">SLICER</span>
+    </div>
+
+    <div class="skill-group">
+      <h3>🌐 Bahasa</h3>
+      <span class="skill">🇮🇩 Bahasa Indonesia</span>
+      <span class="skill">🇬🇧 English (Learning)</span>
+    </div>
+
+    <div class="skill-group">
+      <h3>💻 Tech</h3>
+      <span class="skill">HTML</span>
+    </div>
+  </div>
+
+  <!-- PROYEK -->
+  <div class="section" id="proyek">
+    <h2>Proyek & Tugas Kuliah</h2>
+
+    <div class="project-card">
+      <h3>📊 Sistem Manajemen Data & Dashboard</h3>
+      <p>Membuat sistem anggaran dan dashboard interaktif di Excel & Google Sheets menggunakan rumus lanjutan dan Pivot Table.</p>
+      <p class="hasil">✅ Hasil: Data lebih mudah dianalisis, dipantau, dan divisualisasikan.</p>
+    </div>
+  </div>
+
+  <!-- KONTAK -->
+  <div class="section kontak" id="kontak">
+    <h2>Kontak</h2>
+    <p>📧 Email: <a href="mailto:muhamaddikri097@gmail.com">muhamaddikri097@gmail.com</a></p>
+    <p>📱 Instagram: <a href="#">@dikri_404</a></p>
+    <p>💼 LinkedIn: <a href="#">https://www.linkedin.com/in/muhamad-dikri-early/</a></p>
+  </div>
+
+  <div class="footer">
+    <p>Dibuat dengan ❤️ oleh Muhamad Dikri © 2025</p>
+  </div>
+
+  <script>
+    function toggleDark() {
+      document.body.classList.toggle('dark');
+      const btn = document.querySelector('.toggle-btn');
+      if (document.body.classList.contains('dark')) {
+        btn.textContent = '☀️ Light Mode';
+      } else {
+        btn.textContent = '🌙 Dark Mode';
+      }
+    }
+  </script>
+
+</body>
+</html>
