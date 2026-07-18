@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Portfolio - Muhamad Dikri</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #e8f4fd;
+      color: #333;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* DARK MODE */
+    body.dark { background-color: #1a1a2e; color: #eee; }
+    body.dark nav { background-color: #16213e; }
+    body.dark nav a { color: #ccc; }
+    body.dark .section { background-color: #16213e; }
+    body.dark .project-card { background-color: #0f3460; }
+    body.dark .project-card h3 { color: #3498db; }
+    body.dark .project-card p { color: #ccc; }
+    body.dark .skill { background-color: #0f3460; color: #3498db; }
+    body.dark .cert-card { background-color: #0f3460; }
+    body.dark .wave-top { fill: #16213e; }
+
+    /* NAVBAR */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: #2563eb;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 40px;
+      z-index: 998;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+    }
+
+    .nav-brand {
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .nav-links { display: flex; gap: 25px; align-items: center; }
+    .nav-links a {
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 15px;
+      transition: color 0.3s ease;
+    }
+    .nav-links a:hover { color: white; }
+
+    /* TOMBOL DARK MODE */
+    .toggle-btn {
+      background: rgba(255,255,255,0.2);
+      border: 1px solid rgba(255,255,255,0.4);
+      color: white;
+      padding: 6px 14px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 13px;
+      transition: all 0.3s ease;
+    }
+    .toggle-btn:hover { background: rgba(255,255,255,0.35); }
+
+    /* HERO SECTION */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      color: white;
+      padding: 140px 60px 100px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      animation: fadeUp 1s ease;
+    }
+
+    .hero-text h1 { font-size: 48px; margin-bottom: 10px; }
+    .hero-text p { font-size: 18px; color: rgba(255,255,255,0.8); margin-bottom: 6px; }
+    .hero-text .edu { font-size: 14px; color: rgba(255,255,255,0.6); margin-bottom: 25px; }
+
+    .hero-btn {
+      display: inline-block;
+      background: white;
+      color: #2563eb;
+      padding: 12px 28px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 15px;
+      transition: all 0.3s ease;
+      margin-right: 10px;
+    }
+    .hero-btn:hover { background: #e8f4fd; transform: translateY(-2px); }
+
+    /* WAVE */
+    .wave { display: block; margin-top: -2px; }
+
+    /* CONTAINER */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 30px;
+    }
+
+    /* SECTION TITLE */
+    .section-title {
+      text-align: center;
+      font-size: 28px;
+      color: #1d4ed8;
+      margin-bottom: 30px;
+      padding-top: 50px;
+    }
+
+    body.dark .section-title { color: #3498db; }
+
+    /* 2 KOLOM */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 25px;
+      margin-bottom: 60px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 25px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: fadeUp 1s ease;
+    }
+
+    body.dark .card { background-color: #16213e; }
+
+    .card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.12); }
+    .card h3 { color: #1d4ed8; margin-bottom: 12px; font-size: 18px; }
+    body.dark .card h3 { color: #3498db; }
+    .card p { color: #555; line-height: 1.8; font-size: 14px; }
+    body.dark .card p { color: #ccc; }
+
+    /* SKILL */
+    .skill-group { margin-bottom: 15px; }
+    .skill-group h4 { font-size: 12px; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+    .skill {
+      display: inline-block;
+      background-color: #dbeafe;
+      color: #2563eb;
+      border: 1px solid #2563eb;
+      border-radius: 20px;
+      padding: 5px 14px;
+      margin: 4px;
+      font-size: 13px;
+      transition: all 0.3s ease;
+    }
+    .skill:hover { background-color: #2563eb; color: white; }
+
+    /* PROJECT CARD */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-bottom: 60px;
+    }
+
+    .project-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease;
+      animation: fadeUp 1s ease;
+    }
+
+    body.dark .project-card { background-color: #16213e; }
+
+    .project-card:hover { transform: translateY(-5px); }
+    .project-card img { width: 100%; height: 180px; object-fit: cover; }
+    .project-card .project-info { padding: 15px; }
+    .project-card h3 { color: #1d4ed8; font-size: 15px; margin-bottom: 8px; }
+    body.dark .project-card h3 { color: #3498db; }
+    .project-card p { color: #555; font-size: 13px; line-height: 1.6; }
+    body.dark .project-card p { color: #ccc; }
+    .project-card .tag {
+      display: inline-block;
+      background: #dbeafe;
+      color: #2563eb;
+      font-size: 11px;
+      padding: 3px 10px;
+      border-radius: 10px;
+      margin-top: 8px;
+      margin-right: 4px;
+    }
+
+    /* SERTIFIKAT */
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-bottom: 60px;
+    }
+
+    .cert-card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      border-top: 4px solid #2563eb;
+      transition: transform 0.3s ease;
+      animation: fadeUp 1s ease;
+    }
+
+    body.dark .cert-card { background-color: #16213e; }
+    .cert-card:hover { transform: translateY(-5px); }
+    .cert-card h3 { color: #1d4ed8; font-size: 15px; margin-bottom: 8px; }
+    body.dark .cert-card h3 { color: #3498db; }
+    .cert-card p { color: #555; font-size: 13px; line-height: 1.6; }
+    body.dark .cert-card p { color: #ccc; }
+    .cert-card .tahun { color: #2563eb; font-weight: bold; font-size: 13px; margin-top: 8px; }
+
+    /* KONTAK */
+    .kontak-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-bottom: 60px;
+    }
+
+    .kontak-card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    body.dark .kontak-card { background-color: #16213e; }
+    .kontak-card:hover { transform: translateY(-5px); }
+    .kontak-card .icon { font-size: 30px; margin-bottom: 10px; }
+    .kontak-card p { color: #555; font-size: 14px; }
+    body.dark .kontak-card p { color: #ccc; }
+    .kontak-card a { color: #2563eb; text-decoration: none; font-weight: bold; }
+    .kontak-card a:hover { text-decoration: underline; }
+
+    /* WAVE BOTTOM */
+    .wave-bottom {
+      background: #2563eb;
+      padding: 30px;
+      text-align: center;
+      color: rgba(255,255,255,0.7);
+      font-size: 13px;
+      margin-top: 20px;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .hero { flex-direction: column; padding: 120px 20px 60px; text-align: center; }
+      .hero-text h1 { font-size: 32px; }
+      .two-col { grid-template-columns: 1fr; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .cert-grid { grid-template-columns: 1fr; }
+      .kontak-grid { grid-template-columns: 1fr; }
+      nav { padding: 15px 20px; }
+      .nav-links { gap: 12px; font-size: 13px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="nav-brand">Muhamad Dikri</div>
+    <div class="nav-links">
+      <a href="#tentang">Tentang</a>
+      <a href="#skills">Skills</a>
+      <a href="#karya">Karya</a>
+      <a href="#sertifikat">Sertifikat</a>
+      <a href="#kontak">Kontak</a>
+      <button class="toggle-btn" onclick="toggleDark()">🌙 Dark</button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-text">
+      <h1>Muhamad Dikri</h1>
+      <p>Mahasiswa D4 Administrasi Bisnis Internasional</p>
+      <p class="edu">📚 Semester 2 · Politeknik LP3I Jakarta · SMK Akuntansi</p>
+      <a href="CV_Muhamad_Dikri.pdf" download class="hero-btn">📄 Download CV</a>
+      <a href="#kontak" class="hero-btn">📬 Hubungi Saya</a>
+    </div>
+  </div>
+
+  <!-- WAVE -->
+  <svg class="wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100">
+    <path fill="#2563eb" fill-opacity="1" d="M0,64L80,58.7C160,53,320,43,480,48C640,53,800,75,960,80C1120,85,1280,75,1360,69.3L1440,64L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"></path>
+  </svg>
+
+  <div class="container">
+
+    <!-- TENTANG -->
+    <h2 class="section-title" id="tentang">Tentang Saya</h2>
+    <div class="two-col" style="margin-bottom: 60px;">
+      <div class="card">
+        <h3>👋 Halo, Saya Dikri!</h3>
+        <p>Saya lulusan SMK dengan bidang Akuntansi dan kini sedang menempuh pendidikan D4 Administrasi Bisnis Internasional di Politeknik LP3I Jakarta.</p>
+      </div>
+      <div class="card">
+        <h3>🎯 Tujuan Saya</h3>
+        <p>Saya memiliki kemampuan berbahasa Indonesia yang baik dan sedang aktif meningkatkan bahasa Inggris. Saya senang belajar hal baru dan terbuka untuk peluang baru.</p>
+      </div>
+    </div>
+
+    <!-- SKILLS -->
+    <h2 class="section-title" id="skills">Skills</h2>
+    <div class="two-col">
+      <div class="card">
+        <div class="skill-group">
+          <h4>📊 Microsoft Excel</h4>
+          <span class="skill">VLOOKUP</span>
+          <span class="skill">HLOOKUP</span>
+          <span class="skill">IF</span>
+          <span class="skill">SUM</span>
+          <span class="skill">MIN & MAX</span>
+          <span class="skill">Pivot Table</span>
+          <span class="skill">Slicer</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="skill-group">
+          <h4>🌐 Bahasa</h4>
+          <span class="skill">🇮🇩 Bahasa Indonesia</span>
+          <span class="skill">🇬🇧 English (Learning)</span>
+        </div>
+        <div class="skill-group" style="margin-top:15px;">
+          <h4>💻 Tech</h4>
+          <span class="skill">HTML</span>
+          <span class="skill">CSS</span>
+          <span class="skill">JavaScript</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- KARYA -->
+    <h2 class="section-title" id="karya">Karya & Proyek</h2>
+    <div class="projects-grid">
+      <div class="project-card">
+        <img src="dashboard.png" alt="Dashboard Penjualan">
+        <div class="project-info">
+          <h3>📊 Dashboard Penjualan</h3>
+          <p>Dashboard interaktif Excel dengan chart, pie chart, dan slicer filter berdasarkan wilayah, bulan, dan tahun.</p>
+          <span class="tag">Excel</span>
+          <span class="tag">Pivot Table</span>
+          <span class="tag">Chart</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <div style="background: linear-gradient(135deg, #2563eb, #1d4ed8); height:180px; display:flex; align-items:center; justify-content:center;">
+          <span style="font-size:50px;">📄</span>
+        </div>
+        <div class="project-info">
+          <h3>📄 Dokumen Bisnis Otomatis</h3>
+          <p>Template surat dan proposal otomatis menggunakan Mail Merge, Style, dan sitasi di Microsoft Word.</p>
+          <span class="tag">Word</span>
+          <span class="tag">Mail Merge</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <div style="background: linear-gradient(135deg, #059669, #047857); height:180px; display:flex; align-items:center; justify-content:center;">
+          <span style="font-size:50px;">📊</span>
+        </div>
+        <div class="project-info">
+          <h3>📊 Sistem Manajemen Data</h3>
+          <p>Sistem anggaran dan dashboard interaktif di Google Sheets menggunakan rumus lanjutan dan Pivot Table.</p>
+          <span class="tag">Google Sheets</span>
+          <span class="tag">Pivot Table</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SERTIFIKAT -->
+    <h2 class="section-title" id="sertifikat">Sertifikat & Prestasi</h2>
+    <div class="cert-grid">
+      <div class="cert-card">
+        <h3>🎓 Table Manner Training Program</h3>
+        <p>Hotel 101 URBAN Jakarta Kelapa Gading</p>
+        <p class="tahun">📅 31 Januari 2026</p>
+      </div>
+      <div class="cert-card">
+        <h3>🧠 Psychological Self-Defense</h3>
+        <p>Strategi Menjaga Integritas Diri di Ruang Digital — Politeknik LP3I Jakarta</p>
+        <p class="tahun">📅 20 Mei 2026</p>
+      </div>
+      <div class="cert-card">
+        <h3>💰 Financial Literacy & Job Readiness</h3>
+        <p>You RISE Programme — DBS Foundation & Plan Indonesia</p>
+        <p class="tahun">📅 1 Juni 2026</p>
+      </div>
+    </div>
+
+    <!-- KONTAK -->
+    <h2 class="section-title" id="kontak">Kontak</h2>
+    <div class="kontak-grid">
+      <div class="kontak-card">
+        <div class="icon">📧</div>
+        <p>Email</p>
+        <a href="mailto:muhamaddikri097@gmail.com">muhamaddikri097@gmail.com</a>
+      </div>
+      <div class="kontak-card">
+        <div class="icon">📱</div>
+        <p>Instagram</p>
+        <a href="https://instagram.com/dikri_404" target="_blank">@dikri_404</a>
+      </div>
+      <div class="kontak-card">
+        <div class="icon">💼</div>
+        <p>LinkedIn</p>
+        <a href="https://www.linkedin.com/in/muhamad-dikri-early/" target="_blank">Muhamad Dikri</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="wave-bottom">
+    <p>Dibuat dengan ❤️ oleh Muhamad Dikri © 2026</p>
+  </div>
+
+  <script>
+    function toggleDark() {
+      document.body.classList.toggle('dark');
+      const btn = document.querySelector('.toggle-btn');
+      if (document.body.classList.contains('dark')) {
+        btn.textContent = '☀️ Light';
+      } else {
+        btn.textContent = '🌙 Dark';
+      }
+    }
+  </script>
+
+</body>
+</html>
